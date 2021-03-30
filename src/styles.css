@@ -1,0 +1,8 @@
+.sub-card {
+  margin: 1em;
+}
+html,
+body {
+  height: 100%;
+  background-color: #9fc0ff;
+}
