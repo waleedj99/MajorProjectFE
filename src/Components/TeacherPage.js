@@ -23,7 +23,7 @@ export default function TeacherPage(props) {
   }
   async function getUserInfo() {
     postData(
-      "https://cors-anywhere.herokuapp.com/https://majorprojectzoom.herokuapp.com/user/attendee"
+      "https://cors-anywhere.herokuapp.com/https://majorprojectzoom.herokuapp.com/user/host"
     ).then((data) => {
       console.log(data); // JSON data parsed by `data.json()` call
     });
