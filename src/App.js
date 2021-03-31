@@ -18,7 +18,8 @@ export default function App() {
         value={{
           isTypeStudent: isTypeStudent,
           background_color: "#9FC0FF",
-          card_color: "#126072"
+          card_color: "#126072",
+          loginToken: loginToken
         }}
       >
         <Col md={5}>

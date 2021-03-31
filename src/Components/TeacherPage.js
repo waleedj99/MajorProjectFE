@@ -3,7 +3,7 @@ import ClassCardComponent from "./ClassCardComponent";
 import { useContext, useEffect } from "react";
 import { UserContext } from "../Context/UserContext";
 export default function TeacherPage(props) {
-  const { background_color } = useContext(UserContext);
+  const { background_color, loginToken } = useContext(UserContext);
 
   async function postData(url = "", data = {}) {
     const response = await fetch(url, {
@@ -12,7 +12,7 @@ export default function TeacherPage(props) {
       cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
       credentials: "same-origin", // include, *same-origin, omit
       headers: {
-        "auth-token": props.loginToken,
+        "auth-token": loginToken,
         "Content-Type": "application/json"
         // 'Content-Type': 'application/x-www-form-urlencoded',
       },
