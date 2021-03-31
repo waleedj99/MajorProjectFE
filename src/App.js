@@ -9,7 +9,7 @@ import NavbarComponent from "./Components/NavbarComponent";
 import LoginForm from "./Components/LoginForm";
 export default function App() {
   const [isTypeStudent, setStudentType] = useState(false);
-
+  const [loginToken, setLoginToken] = useState("");
   return (
     <div className="App" style={{ backgroundColor: "#9FC0FF" }}>
       <UserContext.Provider
@@ -20,7 +20,7 @@ export default function App() {
         }}
       >
         <Col md={5}>
-          <LoginForm />
+          <LoginForm setLoginToken={setLoginToken} />
         </Col>
         <NavbarComponent />
         {isTypeStudent ? <StudentPage /> : <TeacherPage />}
