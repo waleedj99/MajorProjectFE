@@ -1,9 +1,36 @@
 import { Col, Container, Row, Button } from "react-bootstrap";
 import ClassCardComponent from "./ClassCardComponent";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { UserContext } from "../Context/UserContext";
-export default function TeacherPage() {
+export default function TeacherPage(props) {
   const { background_color } = useContext(UserContext);
+
+  async function postData(url = "", data = {}) {
+    const response = await fetch(url, {
+      method: "GET", // *GET, POST, PUT, DELETE, etc.
+      mode: "cors", // no-cors, *cors, same-origin
+      cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+      credentials: "same-origin", // include, *same-origin, omit
+      headers: {
+        "auth-token": props.loginToken,
+        "Content-Type": "application/json"
+        // 'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      redirect: "follow", // manual, *follow, error
+      referrerPolicy: "no-referrer" // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+    });
+    return response.json(); // parses JSON response into native JavaScript objects
+  }
+  async function getUserInfo() {
+    postData(
+      "https://cors-anywhere.herokuapp.com/https://majorprojectzoom.herokuapp.com/user/attendee"
+    ).then((data) => {
+      console.log(data); // JSON data parsed by `data.json()` call
+    });
+  }
+  useEffect(() => {
+    getUserInfo();
+  }, []);
   return (
     <Container style={{ backgroundColor: background_color }}>
       {[1, 2, 3, 4, 5, 6, 7, 8].map((sem) => {
