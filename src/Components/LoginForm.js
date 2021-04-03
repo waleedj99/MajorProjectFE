@@ -1,6 +1,13 @@
 import React, { Component, useEffect, useState } from "react";
 import { Form, Button } from "react-bootstrap";
-
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  useRouteMatch,
+  useParams
+} from "react-router-dom";
 function LoginForm(props) {
   const [userPassword, setUserPassword] = useState("qqqqqqqq");
   const [userName, setUserName] = useState("1ds17cs800");
@@ -62,12 +69,14 @@ function LoginForm(props) {
       <Form.Group controlId="formBasicCheckbox">
         <Form.Check type="checkbox" label="Check me out" />
       </Form.Group>
-      <Button
-        onClick={() => getLoginToken(userName, userPassword)}
-        variant="primary"
-      >
-        Submit
-      </Button>
+      <Link to="/">
+        <Button
+          onClick={() => getLoginToken(userName, userPassword)}
+          variant="primary"
+        >
+          Submit
+        </Button>
+      </Link>
     </Form>
   );
 }

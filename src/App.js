@@ -19,7 +19,7 @@ import {
 export default function App() {
   const [isTypeStudent, setStudentType] = useState(true);
   const [loginToken, setLoginToken] = useState(
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IjFkczE3Y3M4MDAiLCJ1c2VyVHlwZSI6ImF0dGVuZGVlIiwiaWF0IjoxNjE3MTgyMjcxfQ.jPyyqwmPs9UadO7k7fhquYZQrgwlveGnDDnCJZv7kqE"
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IjFkczE3Y3M4MDAiLCJ1c2VyVHlwZSI6ImF0dGVuZGVlIiwiaWF0IjoxNjE3NDY5MDUzfQ.Z6_fhTG0r1Ol-R2-iBeL_3WfQ3lq9x2XcVX4xCa-yJI"
   );
   return (
     <div className="App" style={{ backgroundColor: "#9FC6FF" }}>
@@ -27,7 +27,8 @@ export default function App() {
         value={{
           isTypeStudent: isTypeStudent,
           background_color: "#9FC0FF",
-          card_color: "#126072"
+          card_color: "#126072",
+          loginToken: loginToken
         }}
       >
         <Router>
