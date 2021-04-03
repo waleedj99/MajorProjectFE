@@ -18,17 +18,14 @@ import {
 } from "react-router-dom";
 export default function App() {
   const [isTypeStudent, setStudentType] = useState(true);
-  const [loginToken, setLoginToken] = useState(
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IjFkczE3Y3M4MDAiLCJ1c2VyVHlwZSI6ImF0dGVuZGVlIiwiaWF0IjoxNjE3NDY5MDUzfQ.Z6_fhTG0r1Ol-R2-iBeL_3WfQ3lq9x2XcVX4xCa-yJI"
-  );
+  const [loginToken, setLoginToken] = useState(undefined);
   return (
     <div className="App" style={{ backgroundColor: "#9FC6FF" }}>
       <UserContext.Provider
         value={{
           isTypeStudent: isTypeStudent,
           background_color: "#9FC0FF",
-          card_color: "#126072",
-          loginToken: loginToken
+          card_color: "#126072"
         }}
       >
         <Router>
@@ -37,14 +34,21 @@ export default function App() {
               <Container>
                 <Row>
                   <Col md={5}>
-                    <LoginForm setLoginToken={setLoginToken} />
+                    <LoginForm
+                      loginToken={loginToken}
+                      setLoginToken={setLoginToken}
+                    />
                   </Col>
                 </Row>
               </Container>
             </Route>
             <Route path="/">
               <NavbarComponent />
-              {isTypeStudent ? <StudentPage /> : <TeacherPage />}
+              {isTypeStudent ? (
+                <StudentPage loginToken={loginToken} />
+              ) : (
+                <TeacherPage loginToken={loginToken} />
+              )}
             </Route>
           </Switch>
         </Router>

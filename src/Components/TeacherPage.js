@@ -12,7 +12,7 @@ export default function TeacherPage(props) {
       cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
       credentials: "same-origin", // include, *same-origin, omit
       headers: {
-        "auth-token": loginToken,
+        "auth-token": props.loginToken,
         "Content-Type": "application/json"
         // 'Content-Type': 'application/x-www-form-urlencoded',
       },

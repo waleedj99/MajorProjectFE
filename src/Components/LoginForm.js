@@ -38,7 +38,7 @@ function LoginForm(props) {
       }
     ).then((data) => {
       props.setLoginToken(data);
-      console.log(data); // JSON data parsed by `data.json()` call
+      console.log(props.loginToken); // JSON data parsed by `data.json()` call
     });
   }
 
