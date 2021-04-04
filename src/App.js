@@ -17,7 +17,7 @@ import {
   useParams
 } from "react-router-dom";
 export default function App() {
-  const [isTypeStudent, setStudentType] = useState(true);
+  const [isTypeStudent, setStudentType] = useState(false);
   const [loginToken, setLoginToken] = useState(undefined);
   return (
     <div className="App" style={{ backgroundColor: "#9FC6FF" }}>

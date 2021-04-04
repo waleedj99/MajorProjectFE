@@ -4,5 +4,5 @@
 html,
 body {
   height: 100%;
-  background-color: #9fc0ff;
+  background-color: #9fc0ff !important;
 }

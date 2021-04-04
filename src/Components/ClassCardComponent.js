@@ -1,8 +1,16 @@
-import { Card, Button } from "react-bootstrap";
-import { useContext } from "react";
+import {
+  Card,
+  Button,
+  Row,
+  Col,
+  DropdownButton,
+  Dropdown
+} from "react-bootstrap";
+import { useContext, useState } from "react";
 import { UserContext } from "../Context/UserContext";
 export default function ClassCardComponent(props) {
   const { card_color } = useContext(UserContext);
+  const [selectedCourse, setSelectedCourse] = useState("Course");
   return (
     <>
       <Card
@@ -14,9 +22,38 @@ export default function ClassCardComponent(props) {
             {props.semester} - {props.section}
           </Card.Title>
           <Card.Subtitle className="mb-2 ">Subject</Card.Subtitle>
-          <Button variant="light" block>
-            Start Class
-          </Button>
+          <Row>
+            <Col md={6}>
+              <Button variant="light" block>
+                Start Class
+              </Button>
+            </Col>
+            <Col md={2}>
+              <DropdownButton id="dropdown-basic-button" title={selectedCourse}>
+                <Dropdown.Item
+                  onClick={() => {
+                    setSelectedCourse("Course1");
+                  }}
+                >
+                  Course 1
+                </Dropdown.Item>
+                <Dropdown.Item
+                  onClick={() => {
+                    setSelectedCourse("Course2");
+                  }}
+                >
+                  Course 2
+                </Dropdown.Item>
+                <Dropdown.Item
+                  onClick={() => {
+                    setSelectedCourse("Course3");
+                  }}
+                >
+                  Course 3
+                </Dropdown.Item>
+              </DropdownButton>
+            </Col>
+          </Row>
         </Card.Body>
       </Card>
     </>
