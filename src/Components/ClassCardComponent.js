@@ -18,17 +18,15 @@ export default function ClassCardComponent(props) {
         className="sub-card"
       >
         <Card.Body>
-          <Card.Title>
-            {props.semester} - {props.section}
-          </Card.Title>
+          <Card.Title>{props.semsection}</Card.Title>
           <Card.Subtitle className="mb-2 ">Subject</Card.Subtitle>
           <Row>
-            <Col md={6}>
+            <Col>
               <Button variant="light" block>
                 Start Class
               </Button>
             </Col>
-            <Col md={2}>
+            <Col>
               <DropdownButton id="dropdown-basic-button" title={selectedCourse}>
                 <Dropdown.Item
                   onClick={() => {
