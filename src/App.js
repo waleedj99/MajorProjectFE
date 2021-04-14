@@ -33,7 +33,7 @@ export default function App() {
             <Route path="/login">
               <Container>
                 <Row>
-                  <Col md={5}>
+                  <Col md={12}>
                     <LoginForm
                       loginToken={loginToken}
                       setLoginToken={setLoginToken}

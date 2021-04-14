@@ -43,41 +43,43 @@ function LoginForm(props) {
   }
 
   return (
-    <Form>
-      <Form.Group controlId="formBasicEmail">
-        <Form.Label>Username</Form.Label>
-        <Form.Control
-          value={userName}
-          onChange={(e) => {
-            setUserName(e.target.value);
-          }}
-          placeholder="Enter Username"
-        />
-      </Form.Group>
+    <section className="login-dark">
+      <Form>
+        <Form.Group controlId="formBasicEmail">
+          <Form.Label>Username</Form.Label>
+          <Form.Control
+            value={userName}
+            onChange={(e) => {
+              setUserName(e.target.value);
+            }}
+            placeholder="Enter Username"
+          />
+        </Form.Group>
 
-      <Form.Group controlId="formBasicPassword">
-        <Form.Label>Password</Form.Label>
-        <Form.Control
-          value={userPassword}
-          onChange={(e) => {
-            setUserPassword(e.target.value);
-          }}
-          type="password"
-          placeholder="Password"
-        />
-      </Form.Group>
-      <Form.Group controlId="formBasicCheckbox">
-        <Form.Check type="checkbox" label="Check me out" />
-      </Form.Group>
-      <Link to="/">
-        <Button
-          onClick={() => getLoginToken(userName, userPassword)}
-          variant="primary"
-        >
-          Submit
-        </Button>
-      </Link>
-    </Form>
+        <Form.Group controlId="formBasicPassword">
+          <Form.Label>Password</Form.Label>
+          <Form.Control
+            value={userPassword}
+            onChange={(e) => {
+              setUserPassword(e.target.value);
+            }}
+            type="password"
+            placeholder="Password"
+          />
+        </Form.Group>
+        <Form.Group controlId="formBasicCheckbox">
+          <Form.Check type="checkbox" label="Check me out" />
+        </Form.Group>
+        <Link to="/">
+          <Button
+            onClick={() => getLoginToken(userName, userPassword)}
+            variant="primary"
+          >
+            Submit
+          </Button>
+        </Link>
+      </Form>
+    </section>
   );
 }
 
