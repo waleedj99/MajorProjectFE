@@ -17,27 +17,19 @@ import {
   useParams
 } from "react-router-dom";
 export default function App() {
-  const [isTypeStudent, setStudentType] = useState(true);
+  const [isTypeStudent, setStudentType] = useState(false);
   const [loginToken, setLoginToken] = useState(undefined);
   return (
-    <div className="App" style={{ backgroundColor: "#9FC6FF" }}>
+    <div className="App" style={{ backgroundColor: "white" }}>
       <UserContext.Provider
         value={{
           isTypeStudent: isTypeStudent,
-          background_color: "#9FC0FF",
+          background_color: "white",
           card_color: "#126072"
         }}
       >
         <Router>
           <Switch>
-            <Route path="/student">
-              <NavbarComponent />
-              <StudentPage loginToken={loginToken} />
-            </Route>
-            <Route path="/teacher">
-              <NavbarComponent />
-              <TeacherPage loginToken={loginToken} />
-            </Route>
             <Route path="/login">
               <Container>
                 <Row>
@@ -50,6 +42,15 @@ export default function App() {
                 </Row>
               </Container>
             </Route>
+            <Route path="/teacher">
+              <NavbarComponent />
+              <TeacherPage loginToken={loginToken} />
+            </Route>
+            <Route path="/student">
+              <NavbarComponent />
+              <StudentPage loginToken={loginToken} />
+            </Route>
+
             <Route path="/">
               <NavbarComponent />
               {isTypeStudent ? (

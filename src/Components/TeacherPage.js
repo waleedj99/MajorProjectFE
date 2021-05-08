@@ -33,7 +33,11 @@ export default function TeacherPage(props) {
   }, []);
   return (
     <Container style={{ backgroundColor: background_color }}>
-      <Tabs defaultActiveKey="all" id="uncontrolled-tab-example">
+      <Tabs
+        style={{ margin: "1em" }}
+        defaultActiveKey="all"
+        id="uncontrolled-tab-example"
+      >
         <Tab eventKey="assigned" title="Your Classes">
           <Row>
             {["7-A", "7-C", "8-A", "8-D", "5-A", "5-C"].map((semsec) => {
@@ -48,7 +52,7 @@ export default function TeacherPage(props) {
         <Tab eventKey="all" title="All Classes">
           {[1, 2, 3, 4, 5, 6, 7, 8].map((sem) => {
             return (
-              <Row id={"sem-" + sem}>
+              <Row id={"sem-" + sem} style={{ width: "100%" }}>
                 <Col
                   style={{
                     display: "flex",
@@ -61,7 +65,12 @@ export default function TeacherPage(props) {
                   <h1>{sem}</h1>
                 </Col>
                 <Col>
-                  <Row>
+                  <Row
+                    style={{
+                      boxShadow: "1em grey",
+                      margin: "1em"
+                    }}
+                  >
                     {["A", "B", "C", "D"].map((sec) => {
                       return (
                         <Col md={4}>
