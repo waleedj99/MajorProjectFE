@@ -64,13 +64,13 @@ export default function TeacherPage(props) {
                 >
                   <h1>{sem}</h1>
                 </Col>
-                <Col>
-                  <Row
-                    style={{
-                      boxShadow: "1em grey",
-                      margin: "1em"
-                    }}
-                  >
+                <Col
+                  style={{
+                    boxShadow: "0em 0em 1em grey",
+                    margin: "0.5em"
+                  }}
+                >
+                  <Row>
                     {["A", "B", "C", "D"].map((sec) => {
                       return (
                         <Col md={4}>

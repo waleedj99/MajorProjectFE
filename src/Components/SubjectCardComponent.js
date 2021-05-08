@@ -7,7 +7,10 @@ export default function SubjectCardComponent(props) {
   return (
     <>
       <Card
-        style={{ backgroundColor: card_color, color: "white" }}
+        style={{
+          backgroundColor: card_color,
+          color: "white"
+        }}
         className="sub-card"
       >
         <Card.Body>
