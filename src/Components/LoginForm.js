@@ -9,8 +9,8 @@ import {
   useParams
 } from "react-router-dom";
 function LoginForm(props) {
-  const [userPassword, setUserPassword] = useState("qqqqqqqq");
-  const [userName, setUserName] = useState("1ds17cs800");
+  const [userPassword, setUserPassword] = useState("123456789");
+  const [userName, setUserName] = useState("cs00311111");
   const [getTokenFlag, setTokenFlag] = useState(false);
 
   async function postData(url = "", data = {}) {
@@ -45,6 +45,7 @@ function LoginForm(props) {
   return (
     <section className="login-dark">
       <Form>
+        <h2>LOGIN</h2>
         <Form.Group controlId="formBasicEmail">
           <Form.Label>Username</Form.Label>
           <Form.Control
