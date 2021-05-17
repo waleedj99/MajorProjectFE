@@ -4,10 +4,7 @@ import { useState, useContext, useEffect } from "react";
 import { UserContext } from "../Context/UserContext";
 export default function StudentPage(props) {
   const { background_color, loginToken } = useContext(UserContext);
-  const [studentData, setStudentData] = useState({
-    section: 1,
-    subjectlist: []
-  });
+  const [studentData, setStudentData] = useState({});
   async function postData(url = "", data = {}) {
     const response = await fetch(url, {
       method: "GET", // *GET, POST, PUT, DELETE, etc.
@@ -40,17 +37,23 @@ export default function StudentPage(props) {
   }, []);
   return (
     <Container style={{ backgroundColor: background_color }}>
-      <Row>
-        <h1>{studentData.section}</h1>
-        {console.log(studentData.subjectList)}
-        {studentData.subjectList.map((subjectName) => {
-          return (
-            <Col md={4}>
-              <SubjectCardComponent subject={subjectName} />
-            </Col>
-          );
-        })}
-      </Row>
+      {studentData.subjectList === undefined ? (
+        <div>
+          <h1>LOADING</h1>
+        </div>
+      ) : (
+        <Row>
+          <h1>{studentData.section}</h1>
+
+          {studentData.subjectList.map((subjectName) => {
+            return (
+              <Col md={4}>
+                <SubjectCardComponent subject={subjectName} />
+              </Col>
+            );
+          })}
+        </Row>
+      )}
     </Container>
   );
 }

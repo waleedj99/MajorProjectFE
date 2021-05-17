@@ -1,10 +1,10 @@
 import { Col, Container, Row, Button, Tab, Tabs } from "react-bootstrap";
 import ClassCardComponent from "./ClassCardComponent";
-import { useContext, useEffect } from "react";
+import { useState, useContext, useEffect } from "react";
 import { UserContext } from "../Context/UserContext";
 export default function TeacherPage(props) {
   const { background_color, loginToken } = useContext(UserContext);
-
+  const [teacherData, setTeacherData] = useState(undefined);
   async function postData(url = "", data = {}) {
     const response = await fetch(url, {
       method: "GET", // *GET, POST, PUT, DELETE, etc.
@@ -25,7 +25,8 @@ export default function TeacherPage(props) {
     postData(
       "https://cors-anywhere.herokuapp.com/https://majorprojectzoom.herokuapp.com/user/host"
     ).then((data) => {
-      console.log(data); // JSON data parsed by `data.json()` call
+      console.log(data[0].subjectList); // JSON data parsed by `data.json()` call
+      setTeacherData(data);
     });
   }
   useEffect(() => {
@@ -33,58 +34,67 @@ export default function TeacherPage(props) {
   }, []);
   return (
     <Container style={{ backgroundColor: background_color }}>
-      <Tabs
-        style={{ margin: "1em" }}
-        defaultActiveKey="all"
-        id="uncontrolled-tab-example"
-      >
-        <Tab eventKey="assigned" title="Your Classes">
-          <Row>
-            {["7-A", "7-C", "8-A", "8-D", "5-A", "5-C"].map((semsec) => {
+      {teacherData === undefined ? (
+        <div>
+          <h1>LOADING</h1>
+        </div>
+      ) : (
+        <Tabs
+          style={{ margin: "1em" }}
+          defaultActiveKey="all"
+          id="uncontrolled-tab-example"
+        >
+          <Tab eventKey="assigned" title="Your Classes">
+            <Row>
+              {["7-A", "7-C", "8-A", "8-D", "5-A", "5-C"].map((semsec) => {
+                return (
+                  <Col md={4}>
+                    <ClassCardComponent semsection={semsec} />
+                  </Col>
+                );
+              })}
+            </Row>
+          </Tab>
+          <Tab eventKey="all" title="All Classes">
+            {teacherData.map((semObject) => {
               return (
-                <Col md={4}>
-                  <ClassCardComponent semsection={semsec} />
-                </Col>
+                <Row id={"sem-" + semObject.semNum} style={{ width: "100%" }}>
+                  <Col
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
+                      justifyContent: "center",
+                      alignItems: "center"
+                    }}
+                    md={1}
+                  >
+                    <h1>{semObject.semNum}</h1>
+                  </Col>
+                  <Col
+                    style={{
+                      boxShadow: "0em 0em 1em grey",
+                      margin: "0.5em"
+                    }}
+                  >
+                    <Row>
+                      {["A", "B", "C", "D"].map((sec) => {
+                        return (
+                          <Col md={4}>
+                            <ClassCardComponent
+                              subjectList={semObject.subjectList}
+                              semsection={semObject.semNum + "-" + sec}
+                            />
+                          </Col>
+                        );
+                      })}
+                    </Row>
+                  </Col>
+                </Row>
               );
             })}
-          </Row>
-        </Tab>
-        <Tab eventKey="all" title="All Classes">
-          {[1, 2, 3, 4, 5, 6, 7, 8].map((sem) => {
-            return (
-              <Row id={"sem-" + sem} style={{ width: "100%" }}>
-                <Col
-                  style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    justifyContent: "center",
-                    alignItems: "center"
-                  }}
-                  md={1}
-                >
-                  <h1>{sem}</h1>
-                </Col>
-                <Col
-                  style={{
-                    boxShadow: "0em 0em 1em grey",
-                    margin: "0.5em"
-                  }}
-                >
-                  <Row>
-                    {["A", "B", "C", "D"].map((sec) => {
-                      return (
-                        <Col md={4}>
-                          <ClassCardComponent semsection={sem + "-" + sec} />
-                        </Col>
-                      );
-                    })}
-                  </Row>
-                </Col>
-              </Row>
-            );
-          })}
-        </Tab>
-      </Tabs>
+          </Tab>
+        </Tabs>
+      )}
     </Container>
   );
 }

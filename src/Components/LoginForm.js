@@ -9,8 +9,8 @@ import {
   useParams
 } from "react-router-dom";
 function LoginForm(props) {
-  const [userPassword, setUserPassword] = useState("123456789");
-  const [userName, setUserName] = useState("cs00311111");
+  const [userPassword, setUserPassword] = useState("");
+  const [userName, setUserName] = useState("");
   const [getTokenFlag, setTokenFlag] = useState(false);
 
   async function postData(url = "", data = {}) {

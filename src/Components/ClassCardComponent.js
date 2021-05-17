@@ -31,27 +31,21 @@ export default function ClassCardComponent(props) {
             </Col>
             <Col>
               <DropdownButton id="dropdown-basic-button" title={selectedCourse}>
-                <Dropdown.Item
-                  onClick={() => {
-                    setSelectedCourse("Course1");
-                  }}
-                >
-                  Course 1
-                </Dropdown.Item>
-                <Dropdown.Item
-                  onClick={() => {
-                    setSelectedCourse("Course2");
-                  }}
-                >
-                  Course 2
-                </Dropdown.Item>
-                <Dropdown.Item
-                  onClick={() => {
-                    setSelectedCourse("Course3");
-                  }}
-                >
-                  Course 3
-                </Dropdown.Item>
+                {props.subjectList == undefined ? (
+                  <></>
+                ) : (
+                  props.subjectList.map((courseName) => {
+                    return (
+                      <Dropdown.Item
+                        onClick={() => {
+                          setSelectedCourse(courseName);
+                        }}
+                      >
+                        {courseName}
+                      </Dropdown.Item>
+                    );
+                  })
+                )}
               </DropdownButton>
             </Col>
           </Row>
