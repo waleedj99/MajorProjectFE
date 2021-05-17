@@ -42,17 +42,20 @@ export default function StudentPage(props) {
           <h1>LOADING</h1>
         </div>
       ) : (
-        <Row>
-          <h1>{studentData.section}</h1>
-
-          {studentData.subjectList.map((subjectName) => {
-            return (
-              <Col md={4}>
-                <SubjectCardComponent subject={subjectName} />
-              </Col>
-            );
-          })}
-        </Row>
+        <>
+          <Row>
+            <h1>{studentData.section}</h1>
+          </Row>
+          <Row>
+            {studentData.subjectList.map((subjectName) => {
+              return (
+                <Col md={4}>
+                  <SubjectCardComponent subject={subjectName} />
+                </Col>
+              );
+            })}
+          </Row>
+        </>
       )}
     </Container>
   );
