@@ -37,8 +37,12 @@ function LoginForm(props) {
         password: userPassword
       }
     ).then((data) => {
-      props.setLoginToken(data);
-      console.log(props.loginToken); // JSON data parsed by `data.json()` call
+      data = JSON.parse(data);
+      console.log(data["token"], data);
+      props.setLoginToken(data.token);
+      if (data.payload.userType === "Host") props.setStudentType(false);
+      else props.setStudentType(true);
+      // JSON data parsed by `data.json()` call
     });
   }
 

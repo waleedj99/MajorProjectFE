@@ -1,10 +1,13 @@
 import { Col, Container, Row, Button } from "react-bootstrap";
 import SubjectCardComponent from "./SubjectCardComponent";
-import { useContext, useEffect } from "react";
+import { useState, useContext, useEffect } from "react";
 import { UserContext } from "../Context/UserContext";
 export default function StudentPage(props) {
   const { background_color, loginToken } = useContext(UserContext);
-
+  const [studentData, setStudentData] = useState({
+    section: 1,
+    subjectlist: []
+  });
   async function postData(url = "", data = {}) {
     const response = await fetch(url, {
       method: "GET", // *GET, POST, PUT, DELETE, etc.
@@ -25,7 +28,11 @@ export default function StudentPage(props) {
     postData(
       "https://cors-anywhere.herokuapp.com/https://majorprojectzoom.herokuapp.com/user/attendee"
     ).then((data) => {
-      console.log(data); // JSON data parsed by `data.json()` call
+      console.log(data);
+      //data = JSON.parse(data);
+      console.log(props.loginToken);
+      setStudentData(data);
+      console.log(studentData); // JSON data parsed by `data.json()` call
     });
   }
   useEffect(() => {
@@ -34,7 +41,9 @@ export default function StudentPage(props) {
   return (
     <Container style={{ backgroundColor: background_color }}>
       <Row>
-        {["Sub1", "Sub2", "Sub3"].map((subjectName) => {
+        <h1>{studentData.section}</h1>
+        {console.log(studentData.subjectList)}
+        {studentData.subjectList.map((subjectName) => {
           return (
             <Col md={4}>
               <SubjectCardComponent subject={subjectName} />
