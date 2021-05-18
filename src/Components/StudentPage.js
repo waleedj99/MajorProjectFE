@@ -22,15 +22,15 @@ export default function StudentPage(props) {
     return response.json(); // parses JSON response into native JavaScript objects
   }
   async function getUserInfo() {
-    postData(
-      "https://cors-anywhere.herokuapp.com/https://majorprojectzoom.herokuapp.com/user/attendee"
-    ).then((data) => {
-      console.log(data);
-      //data = JSON.parse(data);
-      console.log(props.loginToken);
-      setStudentData(data);
-      console.log(studentData); // JSON data parsed by `data.json()` call
-    });
+    postData("https://majorprojectzoom.herokuapp.com/user/attendee").then(
+      (data) => {
+        console.log(data);
+        //data = JSON.parse(data);
+        console.log(props.loginToken);
+        setStudentData(data);
+        console.log(studentData); // JSON data parsed by `data.json()` call
+      }
+    );
   }
   useEffect(() => {
     getUserInfo();

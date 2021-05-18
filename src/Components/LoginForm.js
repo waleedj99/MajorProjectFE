@@ -30,13 +30,10 @@ function LoginForm(props) {
     return response.text(); // parses JSON response into native JavaScript objects
   }
   async function getLoginToken(userName, userPassword) {
-    postData(
-      "https://cors-anywhere.herokuapp.com/https://majorprojectzoom.herokuapp.com/api/auth/login",
-      {
-        username: userName,
-        password: userPassword
-      }
-    ).then((data) => {
+    postData("https://majorprojectzoom.herokuapp.com/api/auth/login", {
+      username: userName,
+      password: userPassword
+    }).then((data) => {
       data = JSON.parse(data);
       console.log(data["token"], data);
       props.setLoginToken(data.token);

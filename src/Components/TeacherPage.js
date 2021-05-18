@@ -22,12 +22,12 @@ export default function TeacherPage(props) {
     return response.json(); // parses JSON response into native JavaScript objects
   }
   async function getUserInfo() {
-    postData(
-      "https://cors-anywhere.herokuapp.com/https://majorprojectzoom.herokuapp.com/user/host"
-    ).then((data) => {
-      console.log(data[0].subjectList); // JSON data parsed by `data.json()` call
-      setTeacherData(data);
-    });
+    postData("https://majorprojectzoom.herokuapp.com/user/host").then(
+      (data) => {
+        console.log(data[0].subjectList); // JSON data parsed by `data.json()` call
+        setTeacherData(data);
+      }
+    );
   }
   useEffect(() => {
     getUserInfo();
