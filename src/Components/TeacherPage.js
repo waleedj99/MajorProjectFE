@@ -1,4 +1,4 @@
-import { Col, Container, Row, Button, Tab, Tabs } from "react-bootstrap";
+import { Form, Col, Container, Row, Button, Tab, Tabs } from "react-bootstrap";
 import ClassCardComponent from "./ClassCardComponent";
 import { useState, useContext, useEffect } from "react";
 import { UserContext } from "../Context/UserContext";
@@ -24,7 +24,7 @@ export default function TeacherPage(props) {
   async function getUserInfo() {
     postData("https://majorprojectzoom.herokuapp.com/user/host").then(
       (data) => {
-        console.log(data[0].subjectList); // JSON data parsed by `data.json()` call
+        console.log(data); // JSON data parsed by `data.json()` call
         setTeacherData(data);
       }
     );
@@ -34,30 +34,16 @@ export default function TeacherPage(props) {
   }, []);
   return (
     <Container style={{ backgroundColor: background_color }}>
+      <Row></Row>
       {teacherData === undefined ? (
         <div>
           <h1>LOADING</h1>
         </div>
       ) : (
-        <Tabs
-          style={{ margin: "1em" }}
-          defaultActiveKey="all"
-          id="uncontrolled-tab-example"
-        >
-          <Tab eventKey="assigned" title="Your Classes">
-            <Row>
-              {["7-A", "7-C", "8-A", "8-D", "5-A", "5-C"].map((semsec) => {
-                return (
-                  <Col md={4}>
-                    <ClassCardComponent semsection={semsec} />
-                  </Col>
-                );
-              })}
-            </Row>
-          </Tab>
-          <Tab eventKey="all" title="All Classes">
-            {teacherData.map((semObject) => {
-              return (
+        <>
+          {teacherData.map((semObject) => {
+            return (
+              <>
                 <Row id={"sem-" + semObject.semNum} style={{ width: "100%" }}>
                   <Col
                     style={{
@@ -77,7 +63,7 @@ export default function TeacherPage(props) {
                     }}
                   >
                     <Row>
-                      {["A", "B", "C", "D"].map((sec) => {
+                      {semObject.sectionList.map((sec) => {
                         return (
                           <Col md={4}>
                             <ClassCardComponent
@@ -90,10 +76,48 @@ export default function TeacherPage(props) {
                     </Row>
                   </Col>
                 </Row>
-              );
-            })}
-          </Tab>
-        </Tabs>
+              </>
+            );
+          })}
+          <Row style={{ margin: "2em" }}>
+            <h3>Create Your Link</h3>
+          </Row>
+          <Row style={{ marginBottom: "10em" }}>
+            <Col>
+              <Form.Label>Semester</Form.Label>
+              <Form.Control as="select" custom>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+                <option>7</option>
+                <option>8</option>
+              </Form.Control>
+            </Col>
+            <Col>
+              <Form.Label>Section </Form.Label>
+              <Form.Control as="select" custom>
+                <option>A</option>
+                <option>B</option>
+                <option>C</option>
+                <option>D</option>
+                <option>E</option>
+              </Form.Control>
+            </Col>
+
+            <Col>
+              <Form.Label>Course Code</Form.Label>
+              <Form.Control type="text" placeholder="Code" />
+            </Col>
+            <Col>
+              <Button style={{ marginTop: "2em" }} variant="primary" block>
+                Get Link
+              </Button>
+            </Col>
+          </Row>
+        </>
       )}
     </Container>
   );
