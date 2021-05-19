@@ -6,11 +6,40 @@ import {
   DropdownButton,
   Dropdown
 } from "react-bootstrap";
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import { UserContext } from "../Context/UserContext";
 export default function ClassCardComponent(props) {
   const { card_color } = useContext(UserContext);
   const [selectedCourse, setSelectedCourse] = useState("Course");
+  const [classState, setClassState] = useState("false");
+  async function postData(url = "", data = {}) {
+    const response = await fetch(url, {
+      method: "POST", // *GET, POST, PUT, DELETE, etc.
+      mode: "cors", // no-cors, *cors, same-origin
+      cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+      credentials: "same-origin", // include, *same-origin, omit
+      headers: {
+        "auth-token": props.loginToken,
+        "Content-Type": "application/json"
+        // 'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      redirect: "follow", // manual, *follow, error
+      referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+      body: JSON.stringify(data)
+    });
+    return response.json(); // parses JSON response into native JavaScript objects
+  }
+  async function ToggleState(section, subjectcode, classState) {
+    postData("https://majorprojectzoom.herokuapp.com/user/host/toggle", {
+      section: section,
+      subjectcode: subjectcode,
+      isactive: classState
+    }).then((data) => {
+      console.log(data);
+      // JSON data parsed by `data.json()` call
+    });
+  }
+
   return (
     <>
       <Card
@@ -25,8 +54,14 @@ export default function ClassCardComponent(props) {
           <Card.Subtitle className="mb-2 ">Subject</Card.Subtitle>
           <Row>
             <Col>
-              <Button variant="light" block>
-                Start Class
+              <Button
+                onClick={() => {
+                  ToggleState(props.semsection, selectedCourse, !classState);
+                }}
+                variant={classState ? "light" : "dark"}
+                block
+              >
+                Start
               </Button>
             </Col>
             <Col>
@@ -34,14 +69,15 @@ export default function ClassCardComponent(props) {
                 {props.subjectList == undefined ? (
                   <></>
                 ) : (
-                  props.subjectList.map((courseName) => {
+                  props.subjectList.map((subjectObj) => {
                     return (
                       <Dropdown.Item
                         onClick={() => {
-                          setSelectedCourse(courseName);
+                          setSelectedCourse(subjectObj.subjectCode);
+                          setClassState(subjectObj.isActive);
                         }}
                       >
-                        {courseName}
+                        {subjectObj.subjectCode}
                       </Dropdown.Item>
                     );
                   })

@@ -24,8 +24,45 @@ export default function TeacherPage(props) {
   async function getUserInfo() {
     postData("https://majorprojectzoom.herokuapp.com/user/host").then(
       (data) => {
-        console.log(data); // JSON data parsed by `data.json()` call
-        setTeacherData(data);
+        // JSON data parsed by `data.json()` call
+
+        let newData = [
+          [undefined],
+          [undefined],
+          [undefined],
+          [undefined],
+          [undefined],
+          [undefined],
+          [undefined],
+          [undefined]
+        ];
+        newData[0] = data.filter((semObj) => {
+          return semObj.semNum == 1;
+        });
+        newData[1] = data.filter((semObj) => {
+          return semObj.semNum == 2;
+        });
+        newData[2] = data.filter((semObj) => {
+          return semObj.semNum == 3;
+        });
+        newData[3] = data.filter((semObj) => {
+          return semObj.semNum == 4;
+        });
+        newData[4] = data.filter((semObj) => {
+          return semObj.semNum == 5;
+        });
+        newData[5] = data.filter((semObj) => {
+          return semObj.semNum == 6;
+        });
+        newData[6] = data.filter((semObj) => {
+          return semObj.semNum == 7;
+        });
+        newData[7] = data.filter((semObj) => {
+          return semObj.semNum == 8;
+        });
+
+        console.log(newData);
+        setTeacherData(newData);
       }
     );
   }
@@ -41,43 +78,48 @@ export default function TeacherPage(props) {
         </div>
       ) : (
         <>
-          {teacherData.map((semObject) => {
-            return (
-              <>
-                <Row id={"sem-" + semObject.semNum} style={{ width: "100%" }}>
-                  <Col
-                    style={{
-                      display: "flex",
-                      flexDirection: "column",
-                      justifyContent: "center",
-                      alignItems: "center"
-                    }}
-                    md={1}
-                  >
-                    <h1>{semObject.semNum}</h1>
-                  </Col>
-                  <Col
-                    style={{
-                      boxShadow: "0em 0em 1em grey",
-                      margin: "0.5em"
-                    }}
-                  >
-                    <Row>
-                      {semObject.sectionList.map((sec) => {
+          {teacherData.map((semObject, ind) => {
+            if (semObject.length > 0) {
+              console.log(semObject);
+
+              return (
+                <>
+                  <Row id={"sem-" + ind + 1} style={{ width: "100%" }}>
+                    <Col
+                      style={{
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "center",
+                        alignItems: "center"
+                      }}
+                      md={1}
+                    >
+                      <h1>{ind + 1}</h1>
+                    </Col>
+                    <Col
+                      style={{
+                        boxShadow: "0em 0em 1em grey",
+                        margin: "0.5em"
+                      }}
+                    >
+                      {semObject.map((classObj) => {
                         return (
-                          <Col md={4}>
-                            <ClassCardComponent
-                              subjectList={semObject.subjectList}
-                              semsection={semObject.semNum + "-" + sec}
-                            />
-                          </Col>
+                          <Row>
+                            <Col md={4}>
+                              <ClassCardComponent
+                                loginToken={props.loginToken}
+                                subjectList={classObj.subjectList}
+                                semsection={classObj.section}
+                              />
+                            </Col>
+                          </Row>
                         );
                       })}
-                    </Row>
-                  </Col>
-                </Row>
-              </>
-            );
+                    </Col>
+                  </Row>
+                </>
+              );
+            }
           })}
           <Row style={{ margin: "2em" }}>
             <h3>Create Your Link</h3>

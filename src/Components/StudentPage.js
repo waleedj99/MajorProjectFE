@@ -48,9 +48,14 @@ export default function StudentPage(props) {
           </Row>
           <Row>
             {studentData.subjectList.map((subjectName) => {
+              console.log("this is the one ");
+              console.log(subjectName.isActive);
               return (
                 <Col md={4}>
-                  <SubjectCardComponent subject={subjectName} />
+                  <SubjectCardComponent
+                    classState={subjectName.isActive}
+                    subject={subjectName.subjectName}
+                  />
                 </Col>
               );
             })}

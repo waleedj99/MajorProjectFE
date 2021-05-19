@@ -17,7 +17,7 @@ export default function SubjectCardComponent(props) {
           <Card.Title>{props.subject}</Card.Title>
           <Card.Subtitle className="mb-2 ">Timing</Card.Subtitle>
           <Card.Subtitle className="mb-2 ">Teacher Name</Card.Subtitle>
-          <Button variant="light" block>
+          <Button disabled={props.classState} variant="light" block>
             Join Class
           </Button>
         </Card.Body>
