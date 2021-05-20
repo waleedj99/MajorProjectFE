@@ -12,7 +12,10 @@ export default function StudentPage(props) {
       cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
       credentials: "same-origin", // include, *same-origin, omit
       headers: {
-        "auth-token": props.loginToken,
+        "auth-token":
+          localStorage.getItem("jwtToken") === null
+            ? props.loginToken
+            : localStorage.getItem("jwtToken"),
         "Content-Type": "application/json"
         // 'Content-Type': 'application/x-www-form-urlencoded',
       },
@@ -24,11 +27,11 @@ export default function StudentPage(props) {
   async function getUserInfo() {
     postData("https://majorprojectzoom.herokuapp.com/user/attendee").then(
       (data) => {
-        console.log(data);
+        //console.log(data);
         //data = JSON.parse(data);
-        console.log(props.loginToken);
+        //console.log(props.loginToken);
         setStudentData(data);
-        console.log(studentData); // JSON data parsed by `data.json()` call
+        //console.log(studentData); // JSON data parsed by `data.json()` call
       }
     );
   }
@@ -48,8 +51,8 @@ export default function StudentPage(props) {
           </Row>
           <Row>
             {studentData.subjectList.map((subjectName) => {
-              console.log("this is the one ");
-              console.log(subjectName.isActive);
+              //console.log("this is the one ");
+              //console.log(subjectName.isActive);
               return (
                 <Col md={4}>
                   <SubjectCardComponent

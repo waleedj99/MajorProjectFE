@@ -1,4 +1,6 @@
-import React, { Component, useEffect, useState } from "react";
+import React, { Component, useEffect, useState, useContext } from "react";
+import { UserContext } from "../Context/UserContext";
+
 import { Form, Button } from "react-bootstrap";
 import {
   BrowserRouter as Router,
@@ -11,7 +13,6 @@ import {
 function LoginForm(props) {
   const [userPassword, setUserPassword] = useState("");
   const [userName, setUserName] = useState("");
-  const [getTokenFlag, setTokenFlag] = useState(false);
 
   async function postData(url = "", data = {}) {
     const response = await fetch(url, {
@@ -35,10 +36,17 @@ function LoginForm(props) {
       password: userPassword
     }).then((data) => {
       data = JSON.parse(data);
-      console.log(data["token"], data);
       props.setLoginToken(data.token);
-      if (data.payload.userType === "Host") props.setStudentType(false);
-      else props.setStudentType(true);
+      localStorage.setItem("jwtToken", data.token);
+
+      if (data.payload.userType === "Host") {
+        props.setStudentType(false);
+        localStorage.setItem("userType", false);
+      } else {
+        props.setStudentType(true);
+        localStorage.setItem("userType", true);
+      }
+
       // JSON data parsed by `data.json()` call
     });
   }

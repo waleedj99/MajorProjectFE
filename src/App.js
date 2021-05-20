@@ -17,13 +17,20 @@ import {
   useParams
 } from "react-router-dom";
 export default function App() {
-  const [isTypeStudent, setStudentType] = useState(undefined);
-  const [loginToken, setLoginToken] = useState("");
+  const [isTypeStudent, setStudentType] = useState(
+    localStorage.getItem("userType")
+  );
+  const [loginToken, setLoginToken] = useState(
+    localStorage.getItem("jwtToken")
+  );
+
   return (
     <div className="App" style={{ backgroundColor: "white" }}>
       <UserContext.Provider
         value={{
           isTypeStudent: isTypeStudent,
+          loginToken: loginToken,
+          setLoginToken: setLoginToken,
           background_color: "white",
           card_color: "#126072"
         }}
@@ -53,7 +60,9 @@ export default function App() {
             </Route>
 
             <Route path="/">
-              {isTypeStudent === undefined ? (
+              {console.log(isTypeStudent, loginToken)}
+              {console.log(isTypeStudent === true)}
+              {loginToken === null ? (
                 <Container>
                   <Row>
                     <Col md={12}>
@@ -65,7 +74,7 @@ export default function App() {
                     </Col>
                   </Row>
                 </Container>
-              ) : isTypeStudent ? (
+              ) : isTypeStudent === true ? (
                 <>
                   <NavbarComponent />
                   <StudentPage loginToken={loginToken} />

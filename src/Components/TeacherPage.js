@@ -4,6 +4,7 @@ import { useState, useContext, useEffect } from "react";
 import { UserContext } from "../Context/UserContext";
 export default function TeacherPage(props) {
   const { background_color, loginToken } = useContext(UserContext);
+
   const [teacherData, setTeacherData] = useState(undefined);
   async function postData(url = "", data = {}) {
     const response = await fetch(url, {
@@ -12,7 +13,10 @@ export default function TeacherPage(props) {
       cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
       credentials: "same-origin", // include, *same-origin, omit
       headers: {
-        "auth-token": props.loginToken,
+        "auth-token":
+          localStorage.getItem("jwtToken") === null
+            ? props.loginToken
+            : localStorage.getItem("jwtToken"),
         "Content-Type": "application/json"
         // 'Content-Type': 'application/x-www-form-urlencoded',
       },
@@ -61,14 +65,16 @@ export default function TeacherPage(props) {
           return semObj.semNum == 8;
         });
 
-        console.log(newData);
         setTeacherData(newData);
       }
     );
   }
   useEffect(() => {
+    console.log("bruh");
+    console.log(props.loginToken, localStorage.getItem("jwtToken"));
+
     getUserInfo();
-  }, []);
+  }, [props.loginToken]);
   return (
     <Container style={{ backgroundColor: background_color }}>
       <Row></Row>
@@ -80,7 +86,7 @@ export default function TeacherPage(props) {
         <>
           {teacherData.map((semObject, ind) => {
             if (semObject.length > 0) {
-              console.log(semObject);
+              //console.log(semObject);
 
               return (
                 <>
