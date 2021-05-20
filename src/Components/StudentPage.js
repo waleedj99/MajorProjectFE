@@ -37,7 +37,7 @@ export default function StudentPage(props) {
   }
   useEffect(() => {
     getUserInfo();
-  }, []);
+  }, [props.loginToken]);
   return (
     <Container style={{ backgroundColor: background_color }}>
       {studentData.subjectList === undefined ? (

@@ -7,6 +7,7 @@ import {
   Switch,
   Route,
   Link,
+  Redirect,
   useRouteMatch,
   useParams
 } from "react-router-dom";
@@ -36,16 +37,18 @@ function LoginForm(props) {
       password: userPassword
     }).then((data) => {
       data = JSON.parse(data);
-      props.setLoginToken(data.token);
-      localStorage.setItem("jwtToken", data.token);
 
       if (data.payload.userType === "Host") {
+        console.log("HOSt");
         props.setStudentType(false);
         localStorage.setItem("userType", false);
       } else {
+        console.log("Atten");
         props.setStudentType(true);
         localStorage.setItem("userType", true);
       }
+      props.setLoginToken(data.token);
+      localStorage.setItem("jwtToken", data.token);
 
       // JSON data parsed by `data.json()` call
     });

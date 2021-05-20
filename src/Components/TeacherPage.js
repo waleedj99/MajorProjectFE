@@ -70,8 +70,8 @@ export default function TeacherPage(props) {
     );
   }
   useEffect(() => {
-    console.log("bruh");
-    console.log(props.loginToken, localStorage.getItem("jwtToken"));
+    //console.log("bruh");
+    //  console.log(props.loginToken, localStorage.getItem("jwtToken"));
 
     getUserInfo();
   }, [props.loginToken]);

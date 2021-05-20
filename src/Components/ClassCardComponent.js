@@ -36,10 +36,12 @@ export default function ClassCardComponent(props) {
       isactive: classState
     }).then((data) => {
       console.log(data);
+      console.log(props.subjectList);
       // JSON data parsed by `data.json()` call
     });
   }
 
+  useEffect(() => {});
   return (
     <>
       <Card
@@ -56,6 +58,12 @@ export default function ClassCardComponent(props) {
             <Col>
               <Button
                 onClick={() => {
+                  props.subjectList.map((item) => {
+                    if (item.subjectCode === selectedCourse) {
+                      item.isActive = !classState;
+                      setClassState(!classState);
+                    }
+                  });
                   ToggleState(props.semsection, selectedCourse, !classState);
                 }}
                 variant={classState ? "light" : "dark"}
@@ -66,7 +74,7 @@ export default function ClassCardComponent(props) {
             </Col>
             <Col>
               <DropdownButton id="dropdown-basic-button" title={selectedCourse}>
-                {props.subjectList == undefined ? (
+                {props.subjectList === undefined ? (
                   <></>
                 ) : (
                   props.subjectList.map((subjectObj) => {
