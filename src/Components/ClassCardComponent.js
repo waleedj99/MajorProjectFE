@@ -8,6 +8,28 @@ import {
 } from "react-bootstrap";
 import { useContext, useState, useEffect } from "react";
 import { UserContext } from "../Context/UserContext";
+
+function IdleClassButton(props) {
+  const { selectedCourse, classState, setClassState, ToggleState } = props;
+  return (
+    <Button
+      onClick={() => {
+        props.subjectList.map((item) => {
+          if (item.subjectCode === selectedCourse) {
+            item.isActive = !classState;
+            setClassState(!classState);
+          }
+        });
+        ToggleState(props.semsection, selectedCourse, !classState);
+      }}
+      variant="success"
+      block
+    >
+      Start
+    </Button>
+  );
+}
+
 export default function ClassCardComponent(props) {
   const { card_color } = useContext(UserContext);
   const [selectedCourse, setSelectedCourse] = useState("Course");
@@ -56,21 +78,20 @@ export default function ClassCardComponent(props) {
           <Card.Subtitle className="mb-2 ">Subject</Card.Subtitle>
           <Row>
             <Col>
-              <Button
-                onClick={() => {
-                  props.subjectList.map((item) => {
-                    if (item.subjectCode === selectedCourse) {
-                      item.isActive = !classState;
-                      setClassState(!classState);
-                    }
-                  });
-                  ToggleState(props.semsection, selectedCourse, !classState);
-                }}
-                variant={classState ? "light" : "dark"}
-                block
-              >
-                Start
-              </Button>
+              {classState ? (
+                <Button block disabled={true} variant="light">
+                  Busy
+                </Button>
+              ) : (
+                <IdleClassButton
+                  selectedCourse={selectedCourse}
+                  classState={classState}
+                  setClassState={setClassState}
+                  subjectList={props.subjectList}
+                  semsection={props.semsection}
+                  ToggleState={ToggleState}
+                />
+              )}
             </Col>
             <Col>
               <DropdownButton id="dropdown-basic-button" title={selectedCourse}>

@@ -23,8 +23,10 @@ function RedirectCheck(props) {
     return <Redirect to="/student" />;
   } else if (props.userType === false && props.isDataLoaded) {
     return <Redirect to="/teacher" />;
+  } else if (props.isDataLoaded === false) {
+    return <Redirect to="/login" />;
   } else {
-    return <div></div>;
+    return <></>;
   }
 }
 

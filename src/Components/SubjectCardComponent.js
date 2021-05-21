@@ -17,9 +17,15 @@ export default function SubjectCardComponent(props) {
           <Card.Title>{props.subject}</Card.Title>
           <Card.Subtitle className="mb-2 ">Timing</Card.Subtitle>
           <Card.Subtitle className="mb-2 ">Teacher Name</Card.Subtitle>
-          <Button disabled={props.classState} variant="light" block>
-            Join Class
-          </Button>
+          {props.classState ? (
+            <Button disabled={false} variant="success" block>
+              Join Class
+            </Button>
+          ) : (
+            <Button disabled={true} variant="light" block>
+              Not Started
+            </Button>
+          )}
         </Card.Body>
       </Card>
     </>
