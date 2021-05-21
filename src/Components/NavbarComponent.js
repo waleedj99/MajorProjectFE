@@ -14,6 +14,8 @@ export default function NavbarComponent() {
 function clearLocalStorage() {
   localStorage.setItem("jwtToken", null);
   localStorage.setItem("userType", null);
+  localStorage.setItem("dataPayloadDisplayname", null);
+  localStorage.setItem("dataPayloadUsername", null);
 }
 function TeacherNavbar() {
   return (

@@ -10,6 +10,16 @@ import { useContext, useState, useEffect } from "react";
 import { UserContext } from "../Context/UserContext";
 
 function IdleClassButton(props) {
+  async function sendUserInfo(role, userName, userId, classroomId) {
+    let encodedString = window.btoa(
+      role + "+" + userName + "+" + userId + "+" + classroomId
+    );
+    //postData(meetURL + "/" + encodedString).then((data) => {
+    //console.log(studentData); // JSON data parsed by `data.json()` call
+    //});
+    console.log("encoded String is " + encodedString);
+  }
+
   const { selectedCourse, classState, setClassState, ToggleState } = props;
   return (
     <Button
@@ -21,6 +31,12 @@ function IdleClassButton(props) {
           }
         });
         ToggleState(props.semsection, selectedCourse, !classState);
+        sendUserInfo(
+          "Host",
+          localStorage.getItem("dataPayloadDisplayname"),
+          localStorage.getItem("dataPayloadUsername"),
+          props.semsection + "_" + selectedCourse
+        );
       }}
       variant="success"
       block

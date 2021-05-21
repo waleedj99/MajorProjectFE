@@ -49,6 +49,8 @@ function LoginForm(props) {
       }
       props.setLoginToken(data.token);
       localStorage.setItem("jwtToken", data.token);
+      localStorage.setItem("dataPayloadDisplayname", data.payload.displayname);
+      localStorage.setItem("dataPayloadUsername", data.payload.username);
 
       // JSON data parsed by `data.json()` call
     });

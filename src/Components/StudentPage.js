@@ -58,6 +58,9 @@ export default function StudentPage(props) {
                   <SubjectCardComponent
                     classState={subjectName.isActive}
                     subject={subjectName.subjectName}
+                    classroomID={
+                      studentData.section + "_" + subjectName.subjectCode
+                    }
                   />
                 </Col>
               );
