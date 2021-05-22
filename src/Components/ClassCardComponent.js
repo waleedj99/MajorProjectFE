@@ -10,7 +10,8 @@ import { useContext, useState, useEffect } from "react";
 import { UserContext } from "../Context/UserContext";
 
 function IdleClassButton(props) {
-  async function sendUserInfo(role, userName, userId, classroomId) {
+  const WebRTC_URL = ""
+   function sendUserInfo(role, userName, userId, classroomId) {
     let encodedString = window.btoa(
       role + "+" + userName + "+" + userId + "+" + classroomId
     );
@@ -18,6 +19,7 @@ function IdleClassButton(props) {
     //console.log(studentData); // JSON data parsed by `data.json()` call
     //});
     console.log("encoded String is " + encodedString);
+    window.open(WebRTC_URL+'/'+encodedString);
   }
 
   const { selectedCourse, classState, setClassState, ToggleState } = props;
