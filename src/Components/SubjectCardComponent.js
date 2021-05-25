@@ -3,13 +3,13 @@ import { useContext } from "react";
 import { UserContext } from "../Context/UserContext";
 
 export default function SubjectCardComponent(props) {
-  const WebRTC_URL = "";
+  const WebRTC_URL = "https://13.213.67.149/";
 
   async function sendUserInfo(role, userName, userId, classroomId) {
     let encodedString = window.btoa(
       role + "+" + userName + "+" + userId + "+" + classroomId
     );
-    window.open(WebRTC_URL + "/" + encodedString);
+    window.open(WebRTC_URL + encodedString);
     console.log("encoded String is " + encodedString);
   }
   const { card_color } = useContext(UserContext);

@@ -9,9 +9,30 @@ import {
 import { useContext, useState, useEffect } from "react";
 import { UserContext } from "../Context/UserContext";
 
+function ActiveClassButton(props) {
+  const { selectedCourse, classState, setClassState, ToggleState } = props;
+  return (
+    <Button
+      onClick={() => {
+        props.subjectList.map((item) => {
+          if (item.subjectCode === selectedCourse) {
+            item.isActive = !classState;
+            setClassState(!classState);
+          }
+        });
+        ToggleState(props.semsection, selectedCourse, !classState);
+      }}
+      variant="danger"
+      block
+    >
+      End Class
+    </Button>
+  );
+}
+
 function IdleClassButton(props) {
-  const WebRTC_URL = ""
-   function sendUserInfo(role, userName, userId, classroomId) {
+  const WebRTC_URL = "https://13.213.67.149/";
+  function sendUserInfo(role, userName, userId, classroomId) {
     let encodedString = window.btoa(
       role + "+" + userName + "+" + userId + "+" + classroomId
     );
@@ -19,7 +40,7 @@ function IdleClassButton(props) {
     //console.log(studentData); // JSON data parsed by `data.json()` call
     //});
     console.log("encoded String is " + encodedString);
-    window.open(WebRTC_URL+'/'+encodedString);
+    window.open(WebRTC_URL + encodedString);
   }
 
   const { selectedCourse, classState, setClassState, ToggleState } = props;
@@ -97,9 +118,14 @@ export default function ClassCardComponent(props) {
           <Row>
             <Col>
               {classState ? (
-                <Button block disabled={true} variant="light">
-                  Busy
-                </Button>
+                <ActiveClassButton
+                  selectedCourse={selectedCourse}
+                  classState={classState}
+                  setClassState={setClassState}
+                  subjectList={props.subjectList}
+                  semsection={props.semsection}
+                  ToggleState={ToggleState}
+                />
               ) : (
                 <IdleClassButton
                   selectedCourse={selectedCourse}
