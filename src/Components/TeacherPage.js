@@ -2,6 +2,8 @@ import { Form, Col, Container, Row, Button, Tab, Tabs } from "react-bootstrap";
 import ClassCardComponent from "./ClassCardComponent";
 import { useState, useContext, useEffect } from "react";
 import { UserContext } from "../Context/UserContext";
+
+import CustomLinkComponent from "./CustomLinkComponent";
 export default function TeacherPage(props) {
   const { background_color, loginToken } = useContext(UserContext);
 
@@ -131,39 +133,7 @@ export default function TeacherPage(props) {
             <h3>Create Your Link</h3>
           </Row>
           <Row style={{ marginBottom: "10em" }}>
-            <Col>
-              <Form.Label>Semester</Form.Label>
-              <Form.Control as="select" custom>
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-                <option>6</option>
-                <option>7</option>
-                <option>8</option>
-              </Form.Control>
-            </Col>
-            <Col>
-              <Form.Label>Section </Form.Label>
-              <Form.Control as="select" custom>
-                <option>A</option>
-                <option>B</option>
-                <option>C</option>
-                <option>D</option>
-                <option>E</option>
-              </Form.Control>
-            </Col>
-
-            <Col>
-              <Form.Label>Course Code</Form.Label>
-              <Form.Control type="text" placeholder="Code" />
-            </Col>
-            <Col>
-              <Button style={{ marginTop: "2em" }} variant="primary" block>
-                Get Link
-              </Button>
-            </Col>
+            <CustomLinkComponent />
           </Row>
         </>
       )}
