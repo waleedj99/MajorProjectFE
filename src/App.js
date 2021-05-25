@@ -25,7 +25,7 @@ function RedirectCheck(props) {
     } else if (props.userType === false) {
       return <Redirect to="/teacher" />;
     } else {
-      return <></>;
+      return <>Loading</>;
     }
   } else {
     return <Redirect to="/login" />;

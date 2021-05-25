@@ -3,7 +3,7 @@ import { useContext } from "react";
 import { UserContext } from "../Context/UserContext";
 
 export default function SubjectCardComponent(props) {
-  const WebRTC_URL = "https://13.213.67.149/";
+  const WebRTC_URL = "https://54.255.29.47/";
 
   async function sendUserInfo(role, userName, userId, classroomId) {
     let encodedString = window.btoa(

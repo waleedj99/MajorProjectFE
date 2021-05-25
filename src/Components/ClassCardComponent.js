@@ -31,7 +31,7 @@ function ActiveClassButton(props) {
 }
 
 function IdleClassButton(props) {
-  const WebRTC_URL = "https://13.213.67.149/";
+  const WebRTC_URL = "https://54.255.29.47/";
   function sendUserInfo(role, userName, userId, classroomId) {
     let encodedString = window.btoa(
       role + "+" + userName + "+" + userId + "+" + classroomId
