@@ -34,8 +34,6 @@ function RedirectCheck(props) {
 }
 
 export default function App() {
-  const [isDataLoaded, setIsDataLoaded] = useState(false);
-
   const [isTypeStudent, setStudentType] = useState(
     localStorage.getItem("userType")
   );
@@ -61,7 +59,6 @@ export default function App() {
                 <Row>
                   <Col md={12}>
                     <LoginForm
-                      setIsDataLoaded={setIsDataLoaded}
                       loginToken={loginToken}
                       setLoginToken={setLoginToken}
                       setStudentType={setStudentType}
