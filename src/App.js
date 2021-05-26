@@ -19,10 +19,11 @@ import {
 } from "react-router-dom";
 
 function RedirectCheck(props) {
+  console.log("Data Loaded", typeof props.userType);
   if (props.isDataLoaded) {
-    if (props.userType === true) {
+    if (props.userType === "true" || props.userType === true) {
       return <Redirect to="/student" />;
-    } else if (props.userType === false) {
+    } else if (props.userType === "false" || props.userType === false) {
       return <Redirect to="/teacher" />;
     } else {
       return <>Loading</>;
@@ -34,17 +35,6 @@ function RedirectCheck(props) {
 
 export default function App() {
   const [isDataLoaded, setIsDataLoaded] = useState(false);
-  useEffect(() => {
-    //Add a vairabel to indicate that the data is loaded
-    console.log("this is login token", loginToken);
-
-    if (loginToken !== null && isTypeStudent !== null) {
-      console.log("bueh hee i am ");
-      setIsDataLoaded(true);
-    } else {
-      setIsDataLoaded(false);
-    }
-  }, [loginToken, isTypeStudent]);
 
   const [isTypeStudent, setStudentType] = useState(
     localStorage.getItem("userType")
@@ -94,7 +84,7 @@ export default function App() {
               {console.log(isTypeStudent, loginToken)} */}
               {console.log("is Type student:", isTypeStudent)}
               <RedirectCheck
-                isDataLoaded={isDataLoaded}
+                isDataLoaded={isTypeStudent !== null && loginToken !== null}
                 userType={isTypeStudent}
                 loginToken={loginToken}
               />
