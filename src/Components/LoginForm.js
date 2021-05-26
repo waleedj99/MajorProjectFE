@@ -121,7 +121,11 @@ function LoginForm(props) {
         </Form.Group>
 
         <Button
-          onClick={() => getLoginToken(userName, userPassword)}
+          onClick={() => {
+            setUsernameErrorMessage(false);
+            getLoginToken(userName, userPassword);
+            setPasswordErrorMessage(false);
+          }}
           variant="primary"
         >
           Submit
