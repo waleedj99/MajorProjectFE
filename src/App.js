@@ -19,8 +19,13 @@ import {
 } from "react-router-dom";
 
 function RedirectCheck(props) {
-  console.log("Data Loaded", props.userType);
-  if (props.isDataLoaded === true) {
+  console.log("userType", props.userType);
+  console.log("login Token", props.loginToken, typeof props.loginToken);
+  if (props.userType === "null" && props.loginToken === "null") {
+    return <Redirect to="/login" />;
+  }
+
+  if (props.userType !== "null" && props.loginToken !== "null") {
     if (props.userType === "true" || props.userType === true) {
       return <Redirect to="/student" />;
     } else if (props.userType === "false" || props.userType === false) {
@@ -28,10 +33,6 @@ function RedirectCheck(props) {
     } else {
       return <>Loading</>;
     }
-  } else if (props.isDataLoaded === false) {
-    return <> </>;
-  } else {
-    return <Redirect to="/login" />;
   }
 }
 
@@ -64,6 +65,7 @@ export default function App() {
                       loginToken={loginToken}
                       setLoginToken={setLoginToken}
                       setStudentType={setStudentType}
+                      userType={isTypeStudent}
                     />
                   </Col>
                 </Row>
@@ -81,12 +83,8 @@ export default function App() {
             <Route path="/">
               {/* {console.log(localStorage.getItem("userType"), loginToken)}
               {console.log(isTypeStudent, loginToken)} */}
-              {console.log("is Type student:", isTypeStudent)}
-              <RedirectCheck
-                isDataLoaded={isTypeStudent != null && loginToken != null}
-                userType={isTypeStudent}
-                loginToken={loginToken}
-              />
+
+              <RedirectCheck userType={isTypeStudent} loginToken={loginToken} />
             </Route>
           </Switch>
         </Router>
