@@ -38,19 +38,22 @@ function LoginForm(props) {
     }).then((data) => {
       data = JSON.parse(data);
 
-      if (data.payload.userType === "Host") {
-        console.log("HOSt");
-        props.setStudentType(false);
-        localStorage.setItem("userType", false);
-      } else {
-        console.log("Atten");
-        props.setStudentType(true);
-        localStorage.setItem("userType", true);
-      }
       props.setLoginToken(data.token);
       localStorage.setItem("jwtToken", data.token);
       localStorage.setItem("dataPayloadDisplayname", data.payload.displayname);
       localStorage.setItem("dataPayloadUsername", data.payload.username);
+      if (data.payload.userType === "Host") {
+        console.log("HOSt");
+        props.setStudentType(false);
+
+        localStorage.setItem("userType", false);
+        return <Redirect to="/teacher" />;
+      } else {
+        console.log("Atten");
+        props.setStudentType(true);
+        localStorage.setItem("userType", true);
+        return <Redirect to="/student" />;
+      }
 
       // JSON data parsed by `data.json()` call
     });

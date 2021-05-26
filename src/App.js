@@ -18,19 +18,33 @@ import {
   Redirect
 } from "react-router-dom";
 
-export default function App() {
-  const [isDataLoaded, setIsDataLoaded] = useState(true);
-  // useEffect(() => {
-  //   //Add a vairabel to indicate that the data is loaded
-  //   console.log("this is login token", loginToken);
+function RedirectCheck(props) {
+  if (props.isDataLoaded) {
+    if (props.userType === true) {
+      return <Redirect to="/student" />;
+    } else if (props.userType === false) {
+      return <Redirect to="/teacher" />;
+    } else {
+      return <>Loading</>;
+    }
+  } else {
+    return <Redirect to="/login" />;
+  }
+}
 
-  //   if (loginToken !== null && isTypeStudent !== null) {
-  //     console.log("bueh hee i am ");
-  //     setIsDataLoaded(true);
-  //   } else {
-  //     setIsDataLoaded(false);
-  //   }
-  // }, [loginToken, isTypeStudent]);
+export default function App() {
+  const [isDataLoaded, setIsDataLoaded] = useState(false);
+  useEffect(() => {
+    //Add a vairabel to indicate that the data is loaded
+    console.log("this is login token", loginToken);
+
+    if (loginToken !== null && isTypeStudent !== null) {
+      console.log("bueh hee i am ");
+      setIsDataLoaded(true);
+    } else {
+      setIsDataLoaded(false);
+    }
+  }, [loginToken, isTypeStudent]);
 
   const [isTypeStudent, setStudentType] = useState(
     localStorage.getItem("userType")
@@ -38,20 +52,6 @@ export default function App() {
   const [loginToken, setLoginToken] = useState(
     localStorage.getItem("jwtToken")
   );
-
-  function RedirectCheck(props) {
-    if (loginToken !== null && isTypeStudent !== null) {
-      if (props.userType === true) {
-        return <Redirect to="/student" />;
-      } else if (props.userType === false) {
-        return <Redirect to="/teacher" />;
-      } else {
-        return <>Loading</>;
-      }
-    } else {
-      return <Redirect to="/login" />;
-    }
-  }
 
   return (
     <div className="App" style={{ backgroundColor: "white" }}>
