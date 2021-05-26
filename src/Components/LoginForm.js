@@ -12,8 +12,6 @@ import {
   useParams
 } from "react-router-dom";
 function LoginForm(props) {
-  props.setIsDataLoaded(true);
-
   const [userPassword, setUserPassword] = useState("");
   const [userName, setUserName] = useState("");
 

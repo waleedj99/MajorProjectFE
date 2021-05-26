@@ -84,7 +84,7 @@ export default function App() {
               {console.log(isTypeStudent, loginToken)} */}
               {console.log("is Type student:", isTypeStudent)}
               <RedirectCheck
-                isDataLoaded={isTypeStudent !== null && loginToken !== null}
+                isDataLoaded={true}
                 userType={isTypeStudent}
                 loginToken={loginToken}
               />
