@@ -71,6 +71,7 @@ export default function App() {
                 <Row>
                   <Col md={12}>
                     <LoginForm
+                      setIsDataLoaded={setIsDataLoaded}
                       loginToken={loginToken}
                       setLoginToken={setLoginToken}
                       setStudentType={setStudentType}
