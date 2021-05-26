@@ -37,7 +37,7 @@ function LoginForm(props) {
       password: userPassword
     }).then((data) => {
       data = JSON.parse(data);
-
+      props.setIsDataLoaded(true);
       props.setLoginToken(data.token);
       localStorage.setItem("jwtToken", data.token);
       localStorage.setItem("dataPayloadDisplayname", data.payload.displayname);
