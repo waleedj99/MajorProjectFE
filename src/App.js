@@ -33,7 +33,7 @@ function RedirectCheck(props) {
 }
 
 export default function App() {
-  const [isDataLoaded, setIsDataLoaded] = useState(false);
+  const [isDataLoaded, setIsDataLoaded] = useState(true);
   useEffect(() => {
     //Add a vairabel to indicate that the data is loaded
     console.log("this is login token", loginToken);
@@ -41,6 +41,8 @@ export default function App() {
     if (loginToken !== null && isTypeStudent !== null) {
       console.log("bueh hee i am ");
       setIsDataLoaded(true);
+    } else {
+      setIsDataLoaded(false);
     }
   }, [loginToken, isTypeStudent]);
 
