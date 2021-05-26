@@ -47,10 +47,12 @@ function LoginForm(props) {
         props.setStudentType(false);
 
         localStorage.setItem("userType", false);
+        return <Redirect to="/teacher" />;
       } else {
         console.log("Atten");
         props.setStudentType(true);
         localStorage.setItem("userType", true);
+        return <Redirect to="/student" />;
       }
 
       // JSON data parsed by `data.json()` call
