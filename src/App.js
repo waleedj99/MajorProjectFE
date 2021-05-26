@@ -19,8 +19,8 @@ import {
 } from "react-router-dom";
 
 function RedirectCheck(props) {
-  console.log("Data Loaded", typeof props.userType);
-  if (props.isDataLoaded) {
+  console.log("Data Loaded", props.userType);
+  if (props.isDataLoaded === true) {
     if (props.userType === "true" || props.userType === true) {
       return <Redirect to="/student" />;
     } else if (props.userType === "false" || props.userType === false) {
@@ -28,6 +28,8 @@ function RedirectCheck(props) {
     } else {
       return <>Loading</>;
     }
+  } else if (props.isDataLoaded === false) {
+    return <> </>;
   } else {
     return <Redirect to="/login" />;
   }
