@@ -48,7 +48,7 @@ export default function App() {
   const [loginToken, setLoginToken] = useState(
     localStorage.getItem("jwtToken")
   );
-  const [BGColor, setBGColor] = useState("white");
+  const BGColor = "white";
   return (
     <div className="App" style={{ backgroundColor: { BGColor } }}>
       <UserContext.Provider

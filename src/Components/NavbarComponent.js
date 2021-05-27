@@ -5,7 +5,7 @@ export default function NavbarComponent() {
   const { isTypeStudent } = useContext(UserContext);
   return (
     <Navbar sticky="top" expand="lg" variant="dark" bg="dark">
-      <Navbar.Brand href="#">Navbar</Navbar.Brand>
+      <Navbar.Brand href="#">EduHub</Navbar.Brand>
       <TeacherNavbar />
     </Navbar>
   );

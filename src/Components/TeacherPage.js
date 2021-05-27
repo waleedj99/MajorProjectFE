@@ -1,4 +1,13 @@
-import { Form, Col, Container, Row, Button, Tab, Tabs } from "react-bootstrap";
+import {
+  Form,
+  Col,
+  Container,
+  Row,
+  Button,
+  Tab,
+  Tabs,
+  Spinner
+} from "react-bootstrap";
 import ClassCardComponent from "./ClassCardComponent";
 import { useState, useContext, useEffect } from "react";
 import { UserContext } from "../Context/UserContext";
@@ -81,8 +90,10 @@ export default function TeacherPage(props) {
     <Container style={{ backgroundColor: background_color }}>
       <Row></Row>
       {teacherData === undefined ? (
-        <div>
-          <h1>LOADING</h1>
+        <div style={{ left: "44%", position: "relative" }}>
+          <Spinner animation="border" role="status">
+            <span className="sr-only">Loading...</span>
+          </Spinner>
         </div>
       ) : (
         <>

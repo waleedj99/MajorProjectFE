@@ -23,8 +23,7 @@ export default function SubjectCardComponent(props) {
       >
         <Card.Body>
           <Card.Title>{props.subject}</Card.Title>
-          <Card.Subtitle className="mb-2 ">Timing</Card.Subtitle>
-          <Card.Subtitle className="mb-2 ">Teacher Name</Card.Subtitle>
+
           {props.classState ? (
             <Button
               onClick={() => {

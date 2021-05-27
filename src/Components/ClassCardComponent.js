@@ -74,6 +74,7 @@ export default function ClassCardComponent(props) {
   const { card_color } = useContext(UserContext);
   const [selectedCourse, setSelectedCourse] = useState("Course");
   const [classState, setClassState] = useState("false");
+  const [selectedCourseName, setSelectedCourseName] = useState("");
   async function postData(url = "", data = {}) {
     const response = await fetch(url, {
       method: "POST", // *GET, POST, PUT, DELETE, etc.
@@ -103,7 +104,12 @@ export default function ClassCardComponent(props) {
     });
   }
 
-  useEffect(() => {});
+  useEffect(() => {
+    let subjectObj = props.subjectList[0];
+    setSelectedCourse(subjectObj.subjectCode);
+    setClassState(subjectObj.isActive);
+    setSelectedCourseName(subjectObj.subjectName);
+  }, []);
   return (
     <>
       <Card
@@ -115,7 +121,7 @@ export default function ClassCardComponent(props) {
       >
         <Card.Body>
           <Card.Title>{props.semsection}</Card.Title>
-          <Card.Subtitle className="mb-2 ">Subject</Card.Subtitle>
+          <Card.Subtitle className="mb-2 ">{selectedCourseName}</Card.Subtitle>
           <Row>
             <Col>
               {classState ? (
@@ -149,6 +155,7 @@ export default function ClassCardComponent(props) {
                         onClick={() => {
                           setSelectedCourse(subjectObj.subjectCode);
                           setClassState(subjectObj.isActive);
+                          setSelectedCourseName(subjectObj.subjectName);
                         }}
                       >
                         {subjectObj.subjectCode}

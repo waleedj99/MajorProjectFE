@@ -1,4 +1,4 @@
-import { Col, Container, Row, Button } from "react-bootstrap";
+import { Col, Container, Row, Button, Spinner } from "react-bootstrap";
 import SubjectCardComponent from "./SubjectCardComponent";
 import { useState, useContext, useEffect } from "react";
 import { UserContext } from "../Context/UserContext";
@@ -41,8 +41,10 @@ export default function StudentPage(props) {
   return (
     <Container style={{ backgroundColor: background_color }}>
       {studentData.subjectList === undefined ? (
-        <div>
-          <h1>LOADING</h1>
+        <div style={{ left: "44%", position: "relative" }}>
+          <Spinner animation="border" role="status">
+            <span className="sr-only">Loading...</span>
+          </Spinner>
         </div>
       ) : (
         <>
