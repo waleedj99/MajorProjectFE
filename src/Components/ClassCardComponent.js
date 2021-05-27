@@ -31,7 +31,8 @@ function ActiveClassButton(props) {
 }
 
 function IdleClassButton(props) {
-  const WebRTC_URL = "https://54.255.29.47/";
+  const { webRTC_URL } = useContext(UserContext);
+
   function sendUserInfo(role, userName, userId, classroomId) {
     let encodedString = window.btoa(
       role + "+" + userName + "+" + userId + "+" + classroomId
@@ -40,7 +41,7 @@ function IdleClassButton(props) {
     //console.log(studentData); // JSON data parsed by `data.json()` call
     //});
     console.log("encoded String is " + encodedString);
-    window.open(WebRTC_URL + encodedString);
+    window.open(webRTC_URL + encodedString);
   }
 
   const { selectedCourse, classState, setClassState, ToggleState } = props;
