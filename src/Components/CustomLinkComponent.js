@@ -6,18 +6,17 @@ export default function CustomLinkComponent(props) {
   const [selectedSem, setSelectedSem] = useState("");
   const [selectedSection, setSelectedSection] = useState("");
   const [selectedCourseCode, setSelectedCourseCode] = useState("");
-
-  const WebRTC_URL = "https://54.255.29.47/";
+  const { webRTC_URL } = useContext(UserContext);
 
   function sendUserInfo(role, userName, userId, classroomId) {
     let encodedString = window.btoa(
       role + "+" + userName + "+" + userId + "+" + classroomId
     );
     console.log(role, userName, userId, classroomId);
-    window.open(WebRTC_URL + encodedString);
+    window.open(webRTC_URL + encodedString);
     console.log("encoded String is " + encodedString);
   }
-  const { card_color } = useContext(UserContext);
+
   return (
     <>
       <Col>
