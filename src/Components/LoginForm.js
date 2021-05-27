@@ -149,7 +149,7 @@ function LoginForm(props) {
         ) : (
           <></>
         )}
-        {true ? (
+        {isLoading ? (
           <>
             <br />
             <div style={{ left: "44%", position: "relative" }}>
