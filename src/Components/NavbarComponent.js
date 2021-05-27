@@ -20,14 +20,11 @@ function clearLocalStorage() {
 function TeacherNavbar() {
   return (
     <>
-      <Navbar.Toggle aria-controls="basic-navbar-nav" />
-      <Navbar.Collapse id="basic-navbar-nav">
-        <Nav className="mr-auto">
-          <Nav.Link href="/login" onClick={clearLocalStorage}>
-            Log Out
-          </Nav.Link>
-        </Nav>
-      </Navbar.Collapse>
+      <Nav className="ml-auto">
+        <Nav.Link href="/login" onClick={clearLocalStorage}>
+          Log Out
+        </Nav.Link>
+      </Nav>
     </>
   );
 }
