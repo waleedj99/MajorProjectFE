@@ -21,11 +21,8 @@ import {
 function RedirectCheck(props) {
   console.log("userType", props.userType);
   console.log("login Token", props.loginToken, typeof props.loginToken);
-  if (props.userType === "null" && props.loginToken === "null") {
-    return <Redirect to="/login" />;
-  }
 
-  if (props.userType !== "null" && props.loginToken !== "null") {
+  if (props.userType !== null && props.loginToken !== null) {
     if (props.userType === "true" || props.userType === true) {
       return <Redirect to="/student" />;
     } else if (props.userType === "false" || props.userType === false) {
@@ -33,6 +30,8 @@ function RedirectCheck(props) {
     } else {
       return <>Loading</>;
     }
+  } else {
+    return <Redirect to="/login" />;
   }
 }
 

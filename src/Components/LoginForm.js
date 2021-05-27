@@ -130,8 +130,21 @@ function LoginForm(props) {
         >
           Submit
         </Button>
-        {usernameErrorMessage ? <sub>Wrong Username</sub> : <></>}
-        {passwordErrorMessage ? <sub>Wrong Password</sub> : <></>}
+        {usernameErrorMessage ? (
+          <>
+            <br />
+            <sub>Wrong Username</sub>
+          </>
+        ) : (
+          <></>
+        )}
+        {passwordErrorMessage ? (
+          <>
+            <br /> <sub> Wrong Password</sub>
+          </>
+        ) : (
+          <></>
+        )}
       </Form>
     </section>
   );
