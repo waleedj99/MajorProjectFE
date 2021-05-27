@@ -1,7 +1,7 @@
 import React, { Component, useEffect, useState, useContext } from "react";
 import { UserContext } from "../Context/UserContext";
 
-import { Form, Button } from "react-bootstrap";
+import { Form, Button, Spinner } from "react-bootstrap";
 import {
   BrowserRouter as Router,
   Switch,
@@ -28,6 +28,8 @@ function LoginForm(props) {
   const [userName, setUserName] = useState("");
   const [usernameErrorMessage, setUsernameErrorMessage] = useState(false);
   const [passwordErrorMessage, setPasswordErrorMessage] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+
   async function postData(url = "", data = {}) {
     const response = await fetch(url, {
       method: "POST", // *GET, POST, PUT, DELETE, etc.
@@ -52,6 +54,7 @@ function LoginForm(props) {
     })
       .then((data) => {
         console.log(data);
+        setIsLoading(false);
         if (data === "Username is wrong") {
           setUsernameErrorMessage(true);
           return;
@@ -125,6 +128,7 @@ function LoginForm(props) {
             setUsernameErrorMessage(false);
             getLoginToken(userName, userPassword);
             setPasswordErrorMessage(false);
+            setIsLoading(true);
           }}
           variant="primary"
         >
@@ -141,6 +145,18 @@ function LoginForm(props) {
         {passwordErrorMessage ? (
           <>
             <br /> <sub> Wrong Password</sub>
+          </>
+        ) : (
+          <></>
+        )}
+        {true ? (
+          <>
+            <br />
+            <div style={{ left: "44%", position: "relative" }}>
+              <Spinner animation="border" role="status">
+                <span className="sr-only">Loading...</span>
+              </Spinner>
+            </div>
           </>
         ) : (
           <></>
