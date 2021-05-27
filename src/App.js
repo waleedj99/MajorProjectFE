@@ -1,6 +1,6 @@
 import "./styles.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Col, Row, Container } from "react-bootstrap";
+import { Col, Row, Container, Spinner } from "react-bootstrap";
 import { useState, useEffect } from "react";
 import { UserContext } from "./Context/UserContext";
 import StudentPage from "./Components/StudentPage";
@@ -28,7 +28,13 @@ function RedirectCheck(props) {
     } else if (props.userType === "false" || props.userType === false) {
       return <Redirect to="/teacher" />;
     } else {
-      return <>Loading</>;
+      return (
+        <div style={{ left: "44%", position: "relative" }}>
+          <Spinner animation="border" role="status">
+            <span className="sr-only">Loading...</span>
+          </Spinner>
+        </div>
+      );
     }
   } else {
     return <Redirect to="/login" />;
