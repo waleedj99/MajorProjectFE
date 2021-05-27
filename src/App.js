@@ -42,16 +42,17 @@ export default function App() {
   const [loginToken, setLoginToken] = useState(
     localStorage.getItem("jwtToken")
   );
-
+  const [BGColor, setBGColor] = useState("white");
   return (
-    <div className="App" style={{ backgroundColor: "white" }}>
+    <div className="App" style={{ backgroundColor: { BGColor } }}>
       <UserContext.Provider
         value={{
           isTypeStudent: isTypeStudent,
           loginToken: loginToken,
           setLoginToken: setLoginToken,
-          background_color: "white",
-          card_color: "#126072"
+          background_color: BGColor,
+          card_color: "#126072",
+          webRTC_URL: "https://54.255.29.47/"
         }}
       >
         <Router>
