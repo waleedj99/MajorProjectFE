@@ -29,7 +29,8 @@ export default function EndComponent(props) {
     });
   }
   useEffect(() => {
-    if (props.userType === false) {
+    console.log(props.userType, "BURHAHHUHURHHR WTF");
+    if (props.userType === "false" || props.userType === false) {
       ToggleState(
         localStorage.getItem("userSection"),
         localStorage.getItem("userSubjectCode"),

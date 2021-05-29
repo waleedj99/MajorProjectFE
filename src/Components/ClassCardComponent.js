@@ -50,12 +50,12 @@ function IdleClassButton(props) {
   return (
     <Button
       onClick={() => {
-        props.subjectList.map((item) => {
-          if (item.subjectCode === selectedCourse) {
-            item.isActive = !classState;
-            setClassState(!classState);
-          }
-        });
+        // props.subjectList.map((item) => {
+        //   if (item.subjectCode === selectedCourse) {
+        //     item.isActive = !classState;
+        //     setClassState(!classState);
+        //   }
+        // });
         ToggleState(props.semsection, selectedCourse, !classState);
         sendUserInfo(
           "Host",
