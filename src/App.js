@@ -57,7 +57,7 @@ export default function App() {
           loginToken: loginToken,
           setLoginToken: setLoginToken,
           background_color: BGColor,
-          card_color: "#126072",
+          card_color: "#F2D8D5",
           webRTC_URL: "https://54.255.29.47/"
         }}
       >

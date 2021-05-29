@@ -4,8 +4,8 @@ import { UserContext } from "../Context/UserContext";
 export default function NavbarComponent() {
   const { isTypeStudent } = useContext(UserContext);
   return (
-    <Navbar sticky="top" expand="lg" variant="dark" bg="dark">
-      <Navbar.Brand href="#">EduHub</Navbar.Brand>
+    <Navbar sticky="top" expand="lg">
+      <Navbar.Brand href="#">EdHub</Navbar.Brand>
       <TeacherNavbar />
     </Navbar>
   );

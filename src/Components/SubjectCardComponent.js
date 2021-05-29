@@ -26,6 +26,7 @@ export default function SubjectCardComponent(props) {
 
           {props.classState ? (
             <Button
+              className="btn-rose-dark"
               onClick={() => {
                 sendUserInfo(
                   "Attendee",
@@ -41,7 +42,12 @@ export default function SubjectCardComponent(props) {
               Join Class
             </Button>
           ) : (
-            <Button disabled={true} variant="light" block>
+            <Button
+              className="btn-rose-dark"
+              disabled={true}
+              variant="light"
+              block
+            >
               Not Started
             </Button>
           )}

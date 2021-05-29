@@ -13,6 +13,7 @@ function ActiveClassButton(props) {
   const { selectedCourse, classState, setClassState, ToggleState } = props;
   return (
     <Button
+      className="btn-rose-dark"
       onClick={() => {
         props.subjectList.map((item) => {
           if (item.subjectCode === selectedCourse) {
