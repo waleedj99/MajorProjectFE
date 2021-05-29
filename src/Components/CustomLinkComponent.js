@@ -13,7 +13,7 @@ export default function CustomLinkComponent(props) {
       role + "+" + userName + "+" + userId + "+" + classroomId
     );
     console.log(role, userName, userId, classroomId);
-    window.open(webRTC_URL + encodedString);
+    window.location = webRTC_URL + encodedString;
     console.log("encoded String is " + encodedString);
   }
 

@@ -42,7 +42,8 @@ function IdleClassButton(props) {
     //console.log(studentData); // JSON data parsed by `data.json()` call
     //});
     console.log("encoded String is " + encodedString);
-    window.open(webRTC_URL + encodedString);
+
+    window.location = webRTC_URL + encodedString;
   }
 
   const { selectedCourse, classState, setClassState, ToggleState } = props;

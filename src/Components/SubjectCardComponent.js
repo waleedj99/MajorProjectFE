@@ -8,7 +8,7 @@ export default function SubjectCardComponent(props) {
     let encodedString = window.btoa(
       role + "+" + userName + "+" + userId + "+" + classroomId
     );
-    window.open(webRTC_URL + encodedString);
+    window.location = webRTC_URL + encodedString;
     console.log("encoded String is " + encodedString);
   }
 
