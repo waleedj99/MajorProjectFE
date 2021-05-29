@@ -28,6 +28,19 @@ body {
 
 .btn-rose-dark {
   background-color: #733d47 !important;
+  border: #733d47 !important;
+  color: white !important;
+}
+
+.btn-rose-dark {
+  background-color: #775158 !important;
+  border: #733d47 !important;
+  color: white !important;
+}
+
+.btn-rose-dark {
+  background-color: #753843 !important;
+  border: #733d47 !important;
   color: white !important;
 }
 
@@ -35,4 +48,38 @@ body {
   background-color: #733d47 !important;
   color: white !important;
   font-weight: bolder;
+}
+
+.btn-rose-light {
+  background-color: #f2d8d5 !important;
+  border: #f2d8d5 !important;
+  color: black !important;
+}
+
+.dropdn-btn .btn-primary {
+  background-color: #753843 !important;
+  color: white !important;
+  border: #753843;
+}
+
+.dropdn-btn .btn-primary:active {
+  background-color: #753843 !important;
+  color: white !important;
+  border: #753843;
+}
+
+.btn-rose-light:hover {
+  background-color: rgb(240, 198, 185) !important;
+  border: rgb(240, 198, 185);
+  color: black !important;
+}
+
+.btn {
+  border: none;
+}
+
+.btn-rose-light:focus {
+  background-color: rgb(238, 176, 157) !important;
+  border: rgb(238, 176, 157);
+  color: black !important;
 }

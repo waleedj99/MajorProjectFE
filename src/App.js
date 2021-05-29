@@ -7,6 +7,7 @@ import StudentPage from "./Components/StudentPage";
 import TeacherPage from "./Components/TeacherPage";
 import NavbarComponent from "./Components/NavbarComponent";
 import LoginForm from "./Components/LoginForm";
+import EndComponent from "./Components/EndComponent";
 
 import {
   BrowserRouter as Router,
@@ -63,6 +64,10 @@ export default function App() {
       >
         <Router>
           <Switch>
+            <Route path="/end">
+              <EndComponent loginToken={loginToken} />
+              <RedirectCheck userType={isTypeStudent} loginToken={loginToken} />
+            </Route>
             <Route path="/login">
               <Container>
                 <Row>

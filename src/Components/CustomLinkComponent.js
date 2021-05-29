@@ -58,6 +58,7 @@ export default function CustomLinkComponent(props) {
       </Col>
       <Col>
         <Button
+          className="btn-rose-dark"
           onClick={() => {
             sendUserInfo(
               "Host",
@@ -70,7 +71,7 @@ export default function CustomLinkComponent(props) {
           variant="primary"
           block
         >
-          Get Link
+          Start Class
         </Button>
       </Col>
     </>

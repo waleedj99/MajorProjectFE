@@ -101,6 +101,8 @@ export default function ClassCardComponent(props) {
     }).then((data) => {
       console.log(data);
       console.log(props.subjectList);
+      localStorage.setItem("userSection", section);
+      localStorage.setItem("userSubjectCode", subjectcode);
       // JSON data parsed by `data.json()` call
     });
   }
@@ -146,13 +148,18 @@ export default function ClassCardComponent(props) {
               )}
             </Col>
             <Col>
-              <DropdownButton id="dropdown-basic-button" title={selectedCourse}>
+              <DropdownButton
+                className="dropdn-btn"
+                id="dropdown-basic-button"
+                title={selectedCourse}
+              >
                 {props.subjectList === undefined ? (
                   <></>
                 ) : (
                   props.subjectList.map((subjectObj) => {
                     return (
                       <Dropdown.Item
+                        className="dropdn-btn"
                         onClick={() => {
                           setSelectedCourse(subjectObj.subjectCode);
                           setClassState(subjectObj.isActive);

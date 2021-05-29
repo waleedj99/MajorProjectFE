@@ -124,6 +124,7 @@ function LoginForm(props) {
         </Form.Group>
 
         <Button
+          className="btn-rose-light"
           onClick={() => {
             setUsernameErrorMessage(false);
             getLoginToken(userName, userPassword);
