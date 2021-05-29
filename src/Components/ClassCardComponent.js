@@ -95,15 +95,13 @@ export default function ClassCardComponent(props) {
     return response.json(); // parses JSON response into native JavaScript objects
   }
   async function ToggleState(section, subjectcode, classState) {
+    localStorage.setItem("userSection", section);
+    localStorage.setItem("userSubjectCode", subjectcode);
     postData("https://majorprojectzoom.herokuapp.com/user/host/toggle", {
       section: section,
       subjectcode: subjectcode,
       isactive: classState
     }).then((data) => {
-      console.log(data);
-      console.log(props.subjectList);
-      localStorage.setItem("userSection", section);
-      localStorage.setItem("userSubjectCode", subjectcode);
       // JSON data parsed by `data.json()` call
     });
   }

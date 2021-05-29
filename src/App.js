@@ -65,7 +65,7 @@ export default function App() {
         <Router>
           <Switch>
             <Route path="/end">
-              <EndComponent loginToken={loginToken} />
+              <EndComponent userType={isTypeStudent} loginToken={loginToken} />
               <RedirectCheck userType={isTypeStudent} loginToken={loginToken} />
             </Route>
             <Route path="/login">

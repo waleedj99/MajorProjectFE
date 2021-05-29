@@ -29,12 +29,13 @@ export default function EndComponent(props) {
     });
   }
   useEffect(() => {
-    console.log("BRUHHHHH");
-    ToggleState(
-      localStorage.getItem("userSection"),
-      localStorage.getItem("userSubjectCode"),
-      false
-    );
+    if (props.userType === false) {
+      ToggleState(
+        localStorage.getItem("userSection"),
+        localStorage.getItem("userSubjectCode"),
+        false
+      );
+    }
   }, []);
   return <></>;
 }
