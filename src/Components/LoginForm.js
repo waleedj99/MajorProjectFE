@@ -119,9 +119,6 @@ function LoginForm(props) {
             placeholder="Password"
           />
         </Form.Group>
-        <Form.Group controlId="formBasicCheckbox">
-          <Form.Check type="checkbox" label="Check me out" />
-        </Form.Group>
 
         <Button
           className="btn-rose-light"
