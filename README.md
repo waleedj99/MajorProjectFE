@@ -9,6 +9,6 @@ $ cd MajorProjectFE
 ```
 * Run the project:
 ```bash
-$npm install
-$npm run start
+$ npm install
+$ npm run start
 ```
