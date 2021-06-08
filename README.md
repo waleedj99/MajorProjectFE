@@ -19,7 +19,7 @@ https://github.com/prajwalsimpi/edHub-Backend
 https://github.com/waleedj99/edHub_WebRTC
 
 ## MajorProjectFE
-This Edhub FrontEnd code setup the backend and webRTC first before setting this up
+This Edhub FrontEnd code.Setup the backend and webRTC first before setting this up
  
 ## Installation
 * Clone the project: 
