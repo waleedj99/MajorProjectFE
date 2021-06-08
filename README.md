@@ -1,5 +1,5 @@
 
-#Project Details
+# Project Details
 The project is live at https://ed-hub.vercel.app/login
 * Login using these credentials 
 * For Student
@@ -16,7 +16,7 @@ https://github.com/prajwalsimpi/edHub-Backend
 https://github.com/waleedj99/edHub_WebRTC
 
 ## MajorProjectFE
-Edhub FrontEnd
+Edhub FrontEnd 
 
 ## Installation
 * Clone the project: 
